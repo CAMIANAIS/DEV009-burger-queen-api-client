@@ -1,0 +1,74 @@
+@import '@angular/material/theming';
+
+@include mat-core();
+
+$md-sys-color-primary-ligth: #bf0026;
+$md-sys-color-on-primary-ligth: #ffdad8;
+$md-sys-color-primary-container-ligth: #ffffff;
+$md-sys-color-primary-button-ligth: #410006;
+$md-sys-color-primary-dark: #ffb3b0;
+$md-sys-color-accent: #680010;
+$md-sys-color-primary-container-dark: #93001b;
+$md-sys-color-primary-button-dark: #ffdad8;
+
+$md-sys-typescale-headline-large-font-family-name: Roboto;
+$md-sys-typescale-headline-large-font-family-style: Regular;
+$md-sys-typescale-headline-large-font-weight: 400px;
+$md-sys-typescale-headline-large-font-size: 32px;
+$md-sys-typescale-headline-large-line-height: 40px;
+$md-sys-typescale-headline-large-letter-spacing: 0px;
+
+    /* headline - medium 
+    --md-sys-typescale-headline-medium-font-family-name: Roboto;
+    --md-sys-typescale-headline-medium-font-family-style: Regular;
+    --md-sys-typescale-headline-medium-font-weight: 400px;
+    --md-sys-typescale-headline-medium-font-size: 28px;
+    --md-sys-typescale-headline-medium-line-height: 36px;
+    --md-sys-typescale-headline-medium-letter-spacing: 0px;
+        /* body - large 
+    --md-sys-typescale-body-large-font-family-name: Roboto;
+    --md-sys-typescale-body-large-font-family-style: Regular;
+    --md-sys-typescale-body-large-font-weight: 400px;
+    --md-sys-typescale-body-large-font-size: 16px;
+    --md-sys-typescale-body-large-line-height: 24px;
+    --md-sys-typescale-body-large-letter-spacing: 0.50px;
+    /* body - medium 
+    --md-sys-typescale-body-medium-font-family-name: Roboto;
+    --md-sys-typescale-body-medium-font-family-style: Regular;
+    --md-sys-typescale-body-medium-font-weight: 400px;
+    --md-sys-typescale-body-medium-font-size: 14px;
+    --md-sys-typescale-body-medium-line-height: 20px;
+    --md-sys-typescale-body-medium-letter-spacing: 0.25px;
+    /* body - small 
+    --md-sys-typescale-body-small-font-family-name: Roboto;
+    --md-sys-typescale-body-small-font-family-style: Regular;
+    --md-sys-typescale-body-small-font-weight: 400px;
+    --md-sys-typescale-body-small-font-size: 12px;
+    --md-sys-typescale-body-small-line-height: 16px;
+    --md-sys-typescale-body-small-letter-spacing: 0.40px;
+}*/
+$my-custom-theme: mat-light-theme((
+  color: (
+    primary: $md-sys-color-primary-ligth,
+    accent: (
+      default: $md-sys-color-accent,
+    ),
+    // Otros colores de tu tema personalizado
+  ),
+  typography: (
+    headline: (
+      large: (
+        font-family: $md-sys-typescale-headline-large-font-family-name,
+        font-weight: $md-sys-typescale-headline-large-font-weight,
+        font-size: $md-sys-typescale-headline-large-font-size,
+        line-height: $md-sys-typescale-headline-large-line-height,
+        letter-spacing: $md-sys-typescale-headline-large-letter-spacing
+      ),
+      // Continúa con la definición de otros estilos tipográficos
+      // ...
+    ),
+  )
+));
+
+@include angular-material-theme($my-custom-theme);
+

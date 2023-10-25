@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { LoginMatcher } from 'src/app/shared/interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +13,18 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  errorMessage: string = '';// Inicializa una cadena vacía para almacenar mensajes de error.
+  errorMessage: string = '';
 
 
-  constructor(private formBuilder: FormBuilder, private apiService: LoginService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private apiService: LoginService) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      email: '', 
+      password: '', 
     });
+    console.log(this.loginForm)
   }
+
+
 
   ngOnInit() {}
 
@@ -28,47 +32,27 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
 
     const formData = this.loginForm.value;
+    console.log(formData)
 
     this.apiService.login(formData.email, formData.password)
+    
       .subscribe({
         next: (result) => {
           
-          sessionStorage.setItem('token', result.accessToken);
-          sessionStorage.setItem('idUser', result.user.id);
-          sessionStorage.setItem('role', result.user.role);
-          sessionStorage.setItem('email', result.user.email)
-
-          const role = sessionStorage.getItem('role');
-          const token = sessionStorage.getItem('token');
-
-          switch (role) {
-            case 'admin':
-              this.router.navigate(['/admin']);
-              break;
-
-            case 'chef':
-              this.router.navigate(['/kitchen']);
-              break;
-
-            case 'waiter':
-              this.router.navigate(['/orders']);
-              break;
-
-            default:
-              console.log('Unexpected Error');
-          }
-          console.log('Access Token:', token);
+          localStorage.setItem('token', result.accessToken);
+          localStorage.setItem('idUser', result.user.id);
+          localStorage.setItem('role', result.user.role);
+          localStorage.setItem('email', result.user.email)
           
         },
         error: (error) => {
-
           if (error.error === 'Cannot find user') {
             this.errorMessage = 'Cannot find user';
-          }
-          else if (error.error === 'Incorrect password') {
-            this.errorMessage = 'Incorrect password';
+          } else if (error.error === 'Incorrect password') {
+            this.errorMessage= 'Incorrect password';
           }
         },
+        
       });
 
     setTimeout(() => {
@@ -76,11 +60,11 @@ export class LoginComponent implements OnInit {
     }, 3000);
   }
 
-  get emailInput() {
+  get emailData() {
     return this.loginForm.get('email');
   }
 
-  get passwordInput() {
+  get passwordData() {
     return this.loginForm.get('password');
   }
 }
