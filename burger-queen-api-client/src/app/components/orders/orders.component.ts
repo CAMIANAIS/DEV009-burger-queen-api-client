@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  products: productData[] = []; // Inicializa la propiedad como un arreglo vacío
+  products: productData[] = []; 
 
   constructor(private productService: ProductService) {}
 

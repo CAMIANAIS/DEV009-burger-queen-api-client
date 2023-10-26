@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       email: '', 
       password: '', 
     });
-    console.log(this.loginForm)
+    console.log(this.apiService)
   }
 
 
