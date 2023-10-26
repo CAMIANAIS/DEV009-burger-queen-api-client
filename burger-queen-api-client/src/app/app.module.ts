@@ -12,12 +12,17 @@ import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderViewComponent } from './view/order.view/orderView';
+import { HeaderComponent } from './shared/components/header.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    OrdersComponent,
+    OrderViewComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

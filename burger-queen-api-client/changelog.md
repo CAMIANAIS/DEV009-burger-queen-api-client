@@ -10,6 +10,5 @@ Aprendi sobre el Angular, Angular Material hacer formularios y darles estilos co
 -Se consume la API, en servicios con el localhost8080, con Http resultando exitoso.
 
 ### Fixed
-
 Se mejoro la estructura del componente, tambien se agrego un interface donde se incluye el tipado y una vista del componente.
 

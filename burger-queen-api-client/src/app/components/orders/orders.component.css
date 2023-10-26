@@ -1,0 +1,26 @@
+.product-card {
+    width: 150px; /* Ancho de los cards */
+    margin: 10px; /* Margen entre los cards */
+  }
+  
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 10px; /* Espacio entre los cards */
+  }
+  
+  .mat-card-content-custom {
+    padding: 10px; 
+    font-size: 14px;
+  }
+  .mat-card-custom {
+    background-color: #F52F41; 
+    color: #FFFFFF; 
+    border-radius: 5%;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    height: 100vh;
+  }

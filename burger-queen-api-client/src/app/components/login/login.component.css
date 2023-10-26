@@ -12,13 +12,5 @@ mat-form-field{
 mat-card .login-button {
     color: var(--md-sys-color-primary-ligth);
   }
-.main-background {
-    background-image: url('../../assets//img/rest.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    padding: 15px;
-  }
+
 

@@ -1,0 +1,16 @@
+.main-background {
+    background-image: url('../../assets/img/rest.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 15px;
+    position: fixed; /* Asegura que el fondo cubra toda la ventana */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
+  }
+  

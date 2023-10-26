@@ -1,0 +1,18 @@
+<main>
+    <app-header></app-header>
+    <div class="container">
+    <div *ngIf="products" class="product-grid"> <!-- Aplica la clase product-grid -->
+      <div class="product-card" *ngFor="let product of products">
+        <mat-card class="mat-card-custom">
+          <img mat-card-image [src]="product.image" alt="{{ product.name }}">
+          <mat-card-content class="mat-card-content-custom">
+            <h2>{{ product.name }}</h2>
+            <p>Type: {{ product.type }}</p>
+            <p>Price: {{ product.price }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+  </main>
+  

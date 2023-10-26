@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { LoginMatcher } from 'src/app/shared/interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
 
 
-  constructor(private formBuilder: FormBuilder, private apiService: LoginService) {
+  constructor(private formBuilder: FormBuilder, private apiService: LoginService, private router:Router) {
     this.loginForm = this.formBuilder.group({
       email: '', 
       password: '', 
@@ -43,13 +42,17 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('idUser', result.user.id);
           localStorage.setItem('role', result.user.role);
           localStorage.setItem('email', result.user.email)
+
+          if(result.user.role='waiter'){
+            this.router.navigate(['/orders']);
+          }
           
         },
         error: (error) => {
           if (error.error === 'Cannot find user') {
             this.errorMessage = 'Cannot find user';
           } else if (error.error === 'Incorrect password') {
-            this.errorMessage= 'Incorrect password';
+            this.errorMessage = 'Incorrect password';
           }
         },
         
