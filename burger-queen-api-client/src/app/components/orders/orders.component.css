@@ -1,26 +1,74 @@
 .product-card {
-    width: 150px; /* Ancho de los cards */
+    width: 80px; /* Ancho de los cards */
     margin: 10px; /* Margen entre los cards */
   }
   
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 10px; /* Espacio entre los cards */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
+    gap: 5px; /* Espacio entre los cards */
   }
   
-  .mat-card-content-custom {
-    padding: 10px; 
-    font-size: 14px;
-  }
-  .mat-card-custom {
-    background-color: #F52F41; 
-    color: #FFFFFF; 
-    border-radius: 5%;
-  }
+.mat-card-content-custom {
+  padding: 10px; 
+  font-size: 10px;
+  line-height: 1;
+}
 
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    height: 100vh;
-  }
+.mat-card-custom {
+  background-color: #F52F41; 
+  color: #FFFFFF; 
+  border-radius: 5%;
+}
+
+.ordered-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ordered-details span {
+  flex: 1;
+  margin-right: 15px; /* Espacio entre elementos */
+  align-items: center;
+}
+.filters button {
+  margin: 5px; /* Agrega espacio */
+  align-items: center;
+}
+.order-details{
+  color: #FFFFFF;
+  font-weight: bold;
+  background-color: #f4efef44;
+  padding:2%;
+}
+
+ul {
+  list-style-type: none; /* Elimina los puntos de las listas no ordenadas */
+}
+
+mat-form-field{
+  display: block;
+}
+
+.container {
+  display: flex;
+}
+
+.menu {
+  flex: 1; 
+  padding: 10px; 
+
+}
+
+.order-section {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  padding: 10px; 
+
+}
+
+.formOrder {
+  margin-bottom: 20px; 
+
+}
