@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http'; // Debes importar HttpClient para realizar solicitudes HTTP.
+import { HttpClient,HttpHeaders } from '@angular/common/http'; 
 import { productData } from '../shared/interfaces/productData.interface';
 import { Observable } from 'rxjs';
 
