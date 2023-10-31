@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginViewComponent } from './view/login.view/loginView';
 import { OrderViewComponent } from './view/order.view/orderView';
+import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component';
 const routes: Routes = [
     {
       path: '',
@@ -16,7 +17,10 @@ const routes: Routes = [
       path: 'orders',
       component: OrderViewComponent
     },
-
+    {
+      path:'kitchen',
+      component:KitchenViewComponent 
+    }
 ];
 
 @NgModule({

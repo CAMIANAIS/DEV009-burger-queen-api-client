@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/services/orders.service';
 import { productData } from 'src/app/shared/interfaces/productData.interface';
 import { ordersData } from 'src/app/shared/interfaces/orderData.interface';
 
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -15,7 +16,7 @@ export class OrdersComponent implements OnInit {
   products: productData[] = [];
   productsToShow: productData[] = [];
   orderedProducts: { product: productData, quantity: number, price: number }[] = [];
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -23,7 +24,6 @@ export class OrdersComponent implements OnInit {
   ) {
     this.orderForm = this.formBuilder.group({
       clientName: ['', Validators.required],
-      tableNumber: ['', Validators.required],
     });
   }
   ngOnInit() {
@@ -33,12 +33,11 @@ export class OrdersComponent implements OnInit {
         this.productsToShow = data;
       },
       error: (error) => {
-        console.error('Error al obtener los productos', error);
+        console.error('Error to get products', error);
       },
     });
-  }
-  
 
+  }
   filterProducts(type: string) {
     this.productsToShow = this.products.filter(product => product.type === type);
   }
@@ -50,14 +49,16 @@ export class OrdersComponent implements OnInit {
   addProductToOrder(product: productData) {
     if (this.productsToShow.some(p => p.id === product.id)) {
       const orderedProduct = this.orderedProducts.find(item => item.product.id === product.id);
-
+  
       if (orderedProduct) {
         orderedProduct.quantity++;
+        orderedProduct.price += product.price;
       } else {
-        this.orderedProducts.push({ product, quantity: 1, price: product.price });
+        this.orderedProducts.push({ product, quantity: 1, price: product.price }); 
       }
     }
   }
+
   incrementQuantity(item: { product: productData, quantity: number, price: number }) {
     item.quantity++; 
   }
@@ -73,22 +74,19 @@ export class OrdersComponent implements OnInit {
   createOrder() {
     if (this.orderForm.valid && this.orderedProducts.length > 0) {
       const clientName = this.orderForm.get('clientName')?.value || '';
-      const tableNumber = this.orderForm.get('tableNumber')?.value || '';
       const orderedProductsArray = this.orderedProducts.map((item) => ({
         qty: item.quantity,
         product: item.product,
-        price: item.price
       }));
-
+      const userIdString = localStorage.getItem('idUser');
+      const userId = userIdString ? +userIdString : 0;
       const newOrder: ordersData = {
         id: 0,
-        userId: localStorage.getItem('idUser') || '',
+        userId: userId,
         client: clientName,
-        table: tableNumber,
         products: orderedProductsArray,
         status: 'pending',
         dataEntry: new Date().toISOString(),
-        timer: 0
       };
 
       this.orderService.postOrder(newOrder).subscribe({
@@ -109,7 +107,6 @@ export class OrdersComponent implements OnInit {
     this.orderForm.reset();
     
   }
-
   getTotal() {
     let totalToPay = 0;
     for (const product of this.orderedProducts) {
@@ -117,5 +114,9 @@ export class OrdersComponent implements OnInit {
     }
     return totalToPay;
   }
+  get clientName() {
+    return this.orderForm.get('clientName');
+  }
+
 
 }

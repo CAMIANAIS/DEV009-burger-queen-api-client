@@ -6,7 +6,3 @@ export interface LoginMatcher { //para definir el tipo de dato esperado de los d
       id: string;
     };
   }
-
-export interface Orders{
-  
-}
