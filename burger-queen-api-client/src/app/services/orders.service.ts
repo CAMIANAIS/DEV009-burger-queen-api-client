@@ -40,19 +40,24 @@ export class OrderService {
 
   updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
     const url = `${this.urlApi}/${orderId}`;
-
+  
     // Fetch the existing order data first
     return this.http.get<ordersData>(url, this.httpOptions).pipe(
       switchMap((existingOrder: ordersData) => {
-        // Merge the new status into the existing order data
+        // Calculate the current timestamp for dateProcessed
+        const dateProcessed = new Date().toISOString();
+  
+        // Merge the new status and dateProcessed into the existing order data
         const updatedOrder = {
           ...existingOrder,
           status: newStatus,
+          dateProcessed: dateProcessed,
         };
-
+  
         // Send an HTTP PUT request to update the order status
         return this.http.put(url, updatedOrder, this.httpOptions);
       })
     );
   }
+  
 }

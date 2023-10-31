@@ -1,13 +1,14 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { OrderService } from 'src/app/services/orders.service';
 import { ordersData } from 'src/app/shared/interfaces/orderData.interface';
 import { HttpClient } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatOption } from '@angular/material/core';
-import { FormControl } from '@angular/forms';
+import { calculateElapsedTime } from 'src/app/shared/utils/elapsedTime'; 
+
+
 @Component({
   selector: 'app-kitchen',
   templateUrl: './kitchen.component.html',
@@ -55,23 +56,13 @@ export class KitchenComponent implements OnInit {
       });
     }
   } 
-  calculateElapsedTime(order: ordersData): string {
-    if (order.status === 'done' && order.dateProcessed && order.dataEntry) {
-      // Parse the timestamps
-      const dateProcessed = new Date(order.dateProcessed);
-      const dataEntry = new Date(order.dataEntry);
 
-      // Calculate the time elapsed in milliseconds
-      const elapsedTimeMillis = dateProcessed.getTime() - dataEntry.getTime();
 
-      // Convert milliseconds to a readable format (e.g., HH:MM:SS)
-      const hours = Math.floor(elapsedTimeMillis / 3600000);
-      const minutes = Math.floor((elapsedTimeMillis % 3600000) / 60000);
-      const seconds = Math.floor((elapsedTimeMillis % 60000) / 1000);
-
-      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  calculateElapsedTimeForOrder(order: ordersData): string {
+    if (order.dataEntry && order.dateProcessed) {
+      return calculateElapsedTime(order.dataEntry, order.dateProcessed);
     }
-
-    return ''; // Return an empty string if the order is not done or lacks timestamps
+  
+    return ''; 
   }
 }

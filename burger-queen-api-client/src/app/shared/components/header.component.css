@@ -13,4 +13,7 @@
     bottom: 0;
     z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
   }
-  
+
+.exit{
+  align-self: flex-end;
+}

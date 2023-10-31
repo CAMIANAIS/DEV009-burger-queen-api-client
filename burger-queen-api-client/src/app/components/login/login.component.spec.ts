@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -33,6 +34,7 @@ describe('LoginComponent', () => {
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
+        MatIconModule
       ],
       providers: [
         FormBuilder,

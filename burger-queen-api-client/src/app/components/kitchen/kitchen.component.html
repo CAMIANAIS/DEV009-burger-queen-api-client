@@ -44,7 +44,7 @@
       <!-- Columna Timer -->
       <ng-container matColumnDef="timer">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Timer</mat-header-cell>
-        <mat-cell *matCellDef="let order">{{ calculateElapsedTime(order) }}</mat-cell>
+        <mat-cell *matCellDef="let order">{{ calculateElapsedTimeForOrder(order) }}</mat-cell>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
