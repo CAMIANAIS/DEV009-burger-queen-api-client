@@ -15,6 +15,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { productData } from 'src/app/shared/interfaces/productData.interface';
 import { ordersData } from 'src/app/shared/interfaces/orderData.interface';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('OrdersComponent', () => {
   let component: OrdersComponent;
@@ -86,6 +87,7 @@ describe('OrdersComponent', () => {
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
+        MatIconModule
       ],
       providers: [
         FormBuilder,

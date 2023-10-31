@@ -1,3 +1,18 @@
+## 1.1.1-2023-10-31
+### Sprint learnings
+I learned about angular material mat-form, mat-table, mat-icon, testing using Karma and Jasmine creando spy y mocks.
+
+### Added
+-chef can see the orders while they are generated , he can delete and change the status
+-includes client name, add product to order, delete products from the same one, and see bill payment and detail about the order I can send to the kitchen, and it is responsive, also it has an advance of the test .
+-includes create orders component, interfaces for orders and products, and product services,include all the products which are going to be selected by the waiter
+
+### Fixed
+-included HU1 corrected test just added structure o observable
+
+### Deleted
+-I delete tested of views component. 
+
 ## 1.1.1 - 2023-10-25
 ### Sprint learnings
 

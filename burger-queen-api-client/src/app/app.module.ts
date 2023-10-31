@@ -25,6 +25,7 @@ import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component
 import { KitchenComponent } from './components/kitchen/kitchen.component';
 
 import { OrderService } from './services/orders.service';
+import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { OrderService } from './services/orders.service';
     HeaderComponent,
     KitchenViewComponent,
     KitchenComponent,
+    ReadyOrdersViewComponent,
   ],
   imports: [
     BrowserModule,
