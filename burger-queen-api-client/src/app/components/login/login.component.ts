@@ -63,8 +63,16 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', result.user.role);
           localStorage.setItem('email', result.user.email)
 
-          if(result.user.role='waiter'){
-            this.router.navigate(['/orders']);
+          switch (result.user.role) {
+            case 'waiter':
+              this.router.navigate(['/orders']);
+              break;
+            case 'chef':
+              this.router.navigate(['/kitchen']);
+              break;
+            default:
+              console.log('Unidentified user or unrecognized role');
+              break;
           }
           
         },
