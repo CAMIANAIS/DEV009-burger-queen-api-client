@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OrdersComponent } from './orders.component';
 import { OrderService } from 'src/app/services/orders.service';
 import { ProductService } from 'src/app/services/product.service';
-import { HeaderComponent } from 'src/app/shared/components/header.component';
+import { DataService } from 'src/app/services/data.service';
+import { HeaderComponent } from 'src/app/shared/components/header.component/header.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +24,6 @@ describe('OrdersComponent', () => {
 
   const orderServiceSpy = jasmine.createSpyObj('OrderService', ['postOrder']);
   const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts']);
-  const httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get']);
 
   const mockProductData: productData[] = [
     {
@@ -64,12 +64,12 @@ describe('OrdersComponent', () => {
           price: 10,
           image: 'product_a.jpg',
           type: 'Type A',
-          dateEntry: '2023-10-28 15:14:10', 
+          dateEntry: '2023-10-28 15:14:10',
         },
       },
     ],
     status: 'pending',
-    dataEntry: '2023-10-28 15:14:10', 
+    dataEntry: '2023-10-28 15:14:10',
   };
 
   beforeEach(() => {
@@ -78,7 +78,7 @@ describe('OrdersComponent', () => {
     orderServiceSpy.postOrder.and.returnValue(of(mockOrderData));
 
     TestBed.configureTestingModule({
-      declarations: [OrdersComponent,HeaderComponent],
+      declarations: [OrdersComponent, HeaderComponent],
       imports: [
         ReactiveFormsModule,
         BrowserAnimationsModule,
@@ -93,7 +93,7 @@ describe('OrdersComponent', () => {
         FormBuilder,
         { provide: OrderService, useValue: orderServiceSpy },
         { provide: ProductService, useValue: productServiceSpy },
-        { provide: HttpClient, useValue: httpClientSpy },
+        DataService, // Agrega DataService como proveedor
       ],
     }).compileComponents();
 
@@ -101,21 +101,11 @@ describe('OrdersComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should initialize the form controls', () => {
     expect(component.orderForm).toBeTruthy();
     expect(component.orderForm?.get('clientName')).toBeTruthy();
   });
-
-  it('should add a product to the order', () => {
-    component.productsToShow = mockProductData;
-    component.orderedProducts = []; 
-  
-    component.addProductToOrder(mockProductData[0]); 
-  
-    expect(component.orderedProducts.length).toBe(1); //el producto se agrego
-    expect(component.orderedProducts[0].product).toEqual(mockProductData[0]); //el producto agregado es igual al producto de muestra
-  });
-  
   it('should  get products from services', () => {
     productServiceSpy.getProducts.and.returnValue(of(mockProductData));
 
@@ -124,28 +114,59 @@ describe('OrdersComponent', () => {
     expect(productServiceSpy.getProducts).toHaveBeenCalled();
   });
 
-  /*it('should get products from services', () => {
+  it('should add a product to the order', () => {
+    component.productsToShow = mockProductData;
+    component.orderedProducts = [];
 
-    const httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
-    httpClientSpy.get.and.returnValue(of(mockProductData));
+    component.addProductToOrder(mockProductData[0]);
 
-    component.ngOnInit();
+    expect(component.orderedProducts.length).toBe(1); //el producto se agrego
+    expect(component.orderedProducts[0].product).toEqual(mockProductData[0]); //el producto agregado es igual al producto de muestra
+  });
+  it('should increment quantity of an ordered product', () => {
+    const orderedProduct = {
+      product: {
+        id: 1,
+        name: 'Producto 1',
+        price: 10,
+        image: 'producto1.jpg',
+        type: 'Tipo 1',
+        dateEntry: '2023-10-28 15:14:10'
+      },
+      quantity: 2,
+      price: 20,
+    };
+  
+    component.incrementQuantity(orderedProduct);
+  
+    expect(orderedProduct.quantity).toBe(3); // Verifica que la cantidad se haya incrementado en 1
+  });
+  
+  it('should delete an ordered product by index', () => {
+    component.orderedProducts = [...mockOrderedProducts]; // Copia los productos de muestra al componente
+    const indexToDelete = 0; // Índice del producto a eliminar
+  
+    component.deleteProduct(indexToDelete);
+  
+    expect(component.orderedProducts.length).toBe(mockOrderedProducts.length - 1); // Verifica que un producto se haya eliminado
+    expect(component.orderedProducts[indexToDelete]).toBeUndefined(); // Verifica que el producto eliminado sea undefined
+  });
 
-    expect(component.products).toEqual(mockProductData);
-    expect(component.productsToShow).toEqual(mockProductData);
-    expect(httpClientSpy.get).toHaveBeenCalled(); // Ajusta la URL
+  it('should create and post an order with the current date and time', (done) => {
+    spyOn(localStorage, 'getItem').and.returnValue('1'); // Simula el valor de 'idUser'
 
-  });*/
+    // Espía la función formatCurrentDateTime y haz que devuelva una fecha ficticia
+    spyOn(component['dataService'], 'getCurrentDateTimeFormatted').and.returnValue(mockOrderData.dataEntry);
 
-  /*it('should create and post an order', (done) => {
-    spyOn(localStorage, 'getItem').and.returnValue('1'); // Simula el valor de 'idUser' 
-    
     component.orderForm.setValue({ clientName: 'Ejemplo1' });
     component.orderedProducts = mockOrderedProducts;
+
     // Simula la llamada a postOrder
     orderServiceSpy.postOrder.and.returnValue(of(mockOrderData));
+
     // Llama a createOrder
     component.createOrder();
+
     // Verifica que la orden haya sido creada y enviada
     expect(component.orderedProducts.length).toBe(0); // Se espera que se hayan eliminado los productos de la orden
     expect(orderServiceSpy.postOrder).toHaveBeenCalledWith({
@@ -157,17 +178,31 @@ describe('OrdersComponent', () => {
         product: product.product,
       })),
       status: 'pending',
-      dataEntry: '2023-10-28 15:14:10',
+      dataEntry: mockOrderData.dataEntry, // Utiliza la fecha y hora ficticias directamente
     });
-    done(); // Importante para notificar que la prueba ha finalizado
-  
-  });*/
-  
 
-  it('should add a product to the order', () => {
-    component.productsToShow = mockProductData;
-    component.addProductToOrder(mockProductData[0]);
-    expect(component.orderedProducts.length).toBe(1);
+    done(); // Importante para notificar que la prueba ha finalizado
   });
 
+  it('should reset the order and form', () => {
+    component.orderedProducts = [...mockOrderedProducts]; // Copia los productos de muestra al componente
+    component.orderForm.setValue({ clientName: 'Ejemplo1' });
+  
+    component.resetOrder();
+  
+    expect(component.orderedProducts.length).toBe(0); // Verifica que se hayan eliminado los productos de la orden
+    expect(component.orderForm.value.clientName).toBeNull(); // Cambia '' a toBeNull()
+  });
+  
+  it('should calculate the total to pay for ordered products', () => {
+    component.orderedProducts = [...mockOrderedProducts]; // Copia los productos de muestra al componente
+  
+    const expectedTotal = mockOrderedProducts.reduce((total, product) => {
+      return total + product.price * product.quantity;
+    }, 0);
+  
+    const totalToPay = component.getTotal();
+  
+    expect(totalToPay).toBe(expectedTotal);
+  });
 });

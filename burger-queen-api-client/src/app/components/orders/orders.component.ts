@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { OrderService } from 'src/app/services/orders.service';
+import { DataService, formatCurrentDateTime } from 'src/app/services/data.service';
 import { productData } from 'src/app/shared/interfaces/productData.interface';
 import { ordersData } from 'src/app/shared/interfaces/orderData.interface';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -21,6 +21,8 @@ export class OrdersComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private orderService: OrderService,
+    private router: Router,
+    private dataService: DataService
   ) {
     this.orderForm = this.formBuilder.group({
       clientName: ['', Validators.required],
@@ -71,6 +73,7 @@ export class OrdersComponent implements OnInit {
   }
 
   orderSuccess: boolean = false;
+  
   createOrder() {
     if (this.orderForm.valid && this.orderedProducts.length > 0) {
       const clientName = this.orderForm.get('clientName')?.value || '';
@@ -80,13 +83,17 @@ export class OrdersComponent implements OnInit {
       }));
       const userIdString = localStorage.getItem('idUser');
       const userId = userIdString ? +userIdString : 0;
+
+      // Obtén la hora actual en formato "HH:mm:ss" utilizando el servicio DataService
+      const currentDateTime = this.dataService.getCurrentDateTimeFormatted();
+
       const newOrder: ordersData = {
         id: 0,
         userId: userId,
         client: clientName,
         products: orderedProductsArray,
         status: 'pending',
-        dataEntry: new Date().toISOString(),
+        dataEntry: currentDateTime
       };
 
       this.orderService.postOrder(newOrder).subscribe({
@@ -101,7 +108,6 @@ export class OrdersComponent implements OnInit {
       });
     }
   }
-
   resetOrder() {
     this.orderedProducts = [];
     this.orderForm.reset();
@@ -113,6 +119,9 @@ export class OrdersComponent implements OnInit {
       totalToPay += product.price * product.quantity;
     }
     return totalToPay;
+  }
+  navigateToReadyOrdersView() {
+    this.router.navigate(['/readyOrders']);
   }
   get clientName() {
     return this.orderForm.get('clientName');
