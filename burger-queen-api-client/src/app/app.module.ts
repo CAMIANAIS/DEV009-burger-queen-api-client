@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -20,12 +21,14 @@ import { LoginViewComponent } from './view/login.view/loginView';
 import { LoginService } from './services/login.service';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderViewComponent } from './view/order.view/orderView';
-import { HeaderComponent } from './shared/components/header.component';
+import { HeaderComponent } from './shared/components/header.component/header.component';
 import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component';
 import { KitchenComponent } from './components/kitchen/kitchen.component';
 
 import { OrderService } from './services/orders.service';
 import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.view.component';
+import { DeleteConfirmationDialogComponent } from './shared/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ReadyOrdersComponent } from './components/ready-orders/ready-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +40,8 @@ import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.
     KitchenViewComponent,
     KitchenComponent,
     ReadyOrdersViewComponent,
+    DeleteConfirmationDialogComponent,
+    ReadyOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.
     MatPaginatorModule,
     MatIconModule,
     FormsModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDialogModule
   ],
   providers: [
     LoginService,

@@ -13,4 +13,7 @@ mat-card .login-button {
     color: var(--md-sys-color-primary-ligth);
   }
 
+.logo{
+width: 80%;
+}
 

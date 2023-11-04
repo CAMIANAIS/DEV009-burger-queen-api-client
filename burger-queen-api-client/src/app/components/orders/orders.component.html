@@ -21,6 +21,14 @@
       </div>
     </div>
     <div class="order-section">
+      <button
+          mat-icon-button
+          (click)="navigateToReadyOrdersView()"
+         >
+        <mat-icon color="warn">check_circle</mat-icon>
+      </button>
+    
+
       <form [formGroup]="orderForm">
         <div class="formOrder">
           <mat-form-field>
