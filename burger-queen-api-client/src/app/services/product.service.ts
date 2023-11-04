@@ -32,4 +32,13 @@ export class ProductService {
     postProducts(product: productData): Observable<productData> {
         return this.http.post<productData>(this.urlApi, product, this.httpOptions);
       }
+    deleteProduct(productId: string): Observable<any> {
+      const deleteUrl = `${this.urlApi}/${productId}`;
+      return this.http.delete(deleteUrl, this.httpOptions);
+    }
+    
+    patchProduct(productId: string, updatedProduct: any): Observable<any> {
+      const patchUrl = `${this.urlApi}/${productId}`;
+      return this.http.patch(patchUrl, updatedProduct, this.httpOptions);
+    }
 }

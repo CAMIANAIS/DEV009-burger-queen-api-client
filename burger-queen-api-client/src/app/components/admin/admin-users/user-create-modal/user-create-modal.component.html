@@ -1,0 +1,23 @@
+<mat-dialog-content>
+    <h2>Create User</h2>
+    <form [formGroup]="userForm" (ngSubmit)="addUser()">
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password" type="password" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Role" formControlName="role" required>
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="waiter">Waiter</mat-option>
+          <mat-option value="chef">Chef</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-button color="primary" type="submit">Save</button>
+      <button type="button" mat-button color="warn" (click)="closeModal()">Cancel</button>
+    </form>
+</mat-dialog-content>

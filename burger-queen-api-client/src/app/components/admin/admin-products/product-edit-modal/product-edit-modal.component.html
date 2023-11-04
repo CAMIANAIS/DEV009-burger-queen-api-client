@@ -1,0 +1,27 @@
+<mat-dialog-content>
+  <h2>Edit Product</h2>
+  <form #editForm="ngForm" (ngSubmit)="saveChanges()">
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" [(ngModel)]="product.name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Price" name="price" [(ngModel)]="product.price" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Image URL" name="image" [(ngModel)]="product.image">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Type" name="type" [(ngModel)]="product.type" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Date Entry" name="dateEntry" [(ngModel)]="product.dateEntry" required>
+    </mat-form-field>
+
+    <button mat-button color="primary" type="submit">Save</button>
+    <button type="button" mat-button color="warn" (click)="closeModal()">Cancel</button>
+  </form>
+</mat-dialog-content>

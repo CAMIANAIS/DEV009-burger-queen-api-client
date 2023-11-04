@@ -4,6 +4,7 @@ import { LoginViewComponent } from './view/login.view/loginView';
 import { OrderViewComponent } from './view/order.view/orderView';
 import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component';
 import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.view.component';
+import { AdminViewComponent } from './view/admin.view/admin.view.component';
 const routes: Routes = [
     {
       path: '',
@@ -26,7 +27,10 @@ const routes: Routes = [
       path:'readyOrders',
       component:ReadyOrdersViewComponent
     },
-
+    {
+      path:'admin',
+      component:AdminViewComponent
+    },
 
 ];
 

@@ -70,6 +70,9 @@ export class LoginComponent implements OnInit {
             case 'chef':
               this.router.navigate(['/kitchen']);
               break;
+            case 'admin':
+              this.router.navigate(['/admin']);
+              break;
             default:
               console.log('Unidentified user or unrecognized role');
               break;
