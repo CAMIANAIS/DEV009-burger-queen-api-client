@@ -1,0 +1,53 @@
+<button mat-icon-button (click)="openAddProductModal()">
+    <mat-icon color="warn">add</mat-icon> <!-- El icono "add" representa la acción de agregar -->
+  </button>
+  <!-- products.component.html -->
+<mat-table [dataSource]="dataSource">
+    <!-- Columna ID -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.id }}</mat-cell>
+    </ng-container>
+  
+    <!-- Columna Name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.name }}</mat-cell>
+    </ng-container>
+  
+    <!-- Columna Price -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.price }}</mat-cell>
+    </ng-container>
+  
+    <!-- Columna Type -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.type }}</mat-cell>
+    </ng-container>
+  
+    <!-- Columna Date Entry -->
+    <ng-container matColumnDef="dateEntry">
+      <mat-header-cell *matHeaderCellDef>Date Entry</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.dateEntry }}</mat-cell>
+    </ng-container>
+    <!-- Columna Actions -->
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let producto">
+        <button mat-icon-button (click)="openModaltoEditProduct(producto)">
+            <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteProduct(producto)">
+            <mat-icon color="warn">delete</mat-icon>
+        </button>
+        </mat-cell>
+    </ng-container>
+  
+  
+    <!-- Encabezados de columna -->
+    <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+  </mat-table>
+  

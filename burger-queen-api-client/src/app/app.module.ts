@@ -14,6 +14,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -24,11 +27,21 @@ import { OrderViewComponent } from './view/order.view/orderView';
 import { HeaderComponent } from './shared/components/header.component/header.component';
 import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component';
 import { KitchenComponent } from './components/kitchen/kitchen.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminViewComponent } from './view/admin.view/admin.view.component';
 
 import { OrderService } from './services/orders.service';
 import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.view.component';
 import { DeleteConfirmationDialogComponent } from './shared/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { ReadyOrdersComponent } from './components/ready-orders/ready-orders.component';
+import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
+import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
+import { ProductEditModalComponent } from './components/admin/admin-products/product-edit-modal/product-edit-modal.component';
+import { ProductCreateModalComponent } from './components/admin/admin-products/product-create-modal/product-create-modal.component';
+import { UserCreateModalComponent } from './components/admin/admin-users/user-create-modal/user-create-modal.component';
+import { UserEditModalComponent } from './components/admin/admin-users/user-edit-modal/user-edit-modal.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +55,14 @@ import { ReadyOrdersComponent } from './components/ready-orders/ready-orders.com
     ReadyOrdersViewComponent,
     DeleteConfirmationDialogComponent,
     ReadyOrdersComponent,
+    AdminUsersComponent,
+    AdminProductsComponent,
+    AdminComponent,
+    AdminViewComponent,
+    ProductEditModalComponent,
+    ProductCreateModalComponent,
+    UserCreateModalComponent,
+    UserEditModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +79,10 @@ import { ReadyOrdersComponent } from './components/ready-orders/ready-orders.com
     MatIconModule,
     FormsModule,
     MatOptionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
+    MatSelectModule
   ],
   providers: [
     LoginService,
