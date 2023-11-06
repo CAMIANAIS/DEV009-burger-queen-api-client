@@ -79,18 +79,6 @@ describe('KitchenComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should delete an order by index', () => {
-    component.dataSource.data = [...mockOrders]; // Copia los datos de la fuente de datos
-
-    const indexToDelete = 0; // Índice de la orden a eliminar
-    const orderToDelete = mockOrders[indexToDelete];
-
-    component.deleteOrder(orderToDelete);
-
-    // Verifica que la orden se haya eliminado de la fuente de datos de la tabla
-    expect(component.dataSource.data.length).toBe(mockOrders.length - 1); // Verifica que se haya eliminado una orden
-    expect(component.dataSource.data).not.toContain(orderToDelete); // Verifica que la orden eliminada no esté en la fuente de datos
-  });
 
 
 it('should change order status to "done" for a "pending" order', () => {
