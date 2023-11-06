@@ -1,0 +1,10 @@
+.table-container {
+    display: flex; 
+    padding: 5%;
+  }
+  
+ 
+  .table-container table {
+    width: 80%;
+  }
+  

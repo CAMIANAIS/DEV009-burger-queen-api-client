@@ -1,48 +1,48 @@
 <main>
-  <app-header></app-header>
-        <mat-card>
-            <mat-card-content class="content">
-                <img src="../../../assets/logo-color.png" alt="logo" class="logo"/>
-                <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="save($event)">
-                    <mat-form-field>
-                        <input matInput id="emailData" placeholder="email"           formControlName="email"
-                        [class.is-invalid]="isFieldInvalid('email')"
-                      />
-                      <i
-                        class="fas fa-user"
-                        id="icono-user"
-                        [class.is-invalid]="isFieldInvalid('email')"
-                      ></i>                   
-                      <mat-error>{{ errorMessage }}</mat-error>
-                    </mat-form-field>
-                    <div class="container-error">
-                      <span *ngIf="isFieldInvalid('email')" class="error-text"
-                        >Ingrese su email</span
-                      >
-                    </div>
-                      
-                      <mat-form-field>
-                        <input matInput id="passwordData" type="password" placeholder="password" 
-                        formControlName="password"
-                        [class.is-invalid]="isFieldInvalid('password')"
-                      />
-                      <mat-error>{{ errorMessage }}</mat-error>
-                    </mat-form-field>
-                    <div  class="container-error-password">
-                    <span *ngIf="isFieldInvalid('password')" class="error-text"
-                      >Ingrese su contraseña</span
-                    >
-                    </div>
-                      
-                      <!-- Muestra errores en la pantalla -->
-                      <div *ngIf="errorMessage" class="error-message">
-                        {{ errorMessage }}
-                      </div>
-                      
-                      <button type="submit" class="login-button mat-primary" mat-raised-button>Login</button>
-                        
-                </form>
-            </mat-card-content>
-        </mat-card>
+  <div class="main-background"></div>
+    <mat-card>
+        <mat-card-content class="content">
+            <img src="../../../assets/logo-color.png" alt="logo" class="logo"/>
+            <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="save($event)">
+                <mat-form-field>
+                    <input matInput id="emailData" placeholder="email"           formControlName="email"
+                    [class.is-invalid]="isFieldInvalid('email')"
+                  />
+                  <i
+                    class="fas fa-user"
+                    id="icono-user"
+                    [class.is-invalid]="isFieldInvalid('email')"
+                  ></i>                   
+                  <mat-error>{{ errorMessage }}</mat-error>
+                </mat-form-field>
+                <div class="container-error">
+                  <span *ngIf="isFieldInvalid('email')" class="error-text"
+                    >Ingrese su email</span
+                  >
+                </div>
+                  
+                  <mat-form-field>
+                    <input matInput id="passwordData" type="password" placeholder="password" 
+                    formControlName="password"
+                    [class.is-invalid]="isFieldInvalid('password')"
+                  />
+                  <mat-error>{{ errorMessage }}</mat-error>
+                </mat-form-field>
+                <div  class="container-error-password">
+                <span *ngIf="isFieldInvalid('password')" class="error-text"
+                  >Ingrese su contraseña</span
+                >
+                </div>
+                  
+                  <!-- Muestra errores en la pantalla -->
+                  <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                  </div>
+                  
+                  <button type="submit" class="login-button mat-primary" mat-raised-button>Login</button>
+                    
+            </form>
+        </mat-card-content>
+    </mat-card>
    
 </main>

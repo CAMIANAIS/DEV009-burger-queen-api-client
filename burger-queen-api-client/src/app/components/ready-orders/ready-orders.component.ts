@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { calculateElapsedTime } from 'src/app/shared/utils/elapsedTime';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'ready-orders',
   templateUrl: './ready-orders.component.html',
@@ -20,7 +20,7 @@ export class ReadyOrdersComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private orderService: OrderService, private http: HttpClient, private dialog: MatDialog) {}
+  constructor(private orderService: OrderService, private http: HttpClient, private dialog: MatDialog, private router: Router,) {}
 
   ngOnInit() {
     this.orderService.getOrders().subscribe((data) => {
@@ -44,5 +44,7 @@ export class ReadyOrdersComponent implements OnInit {
       });
     }
   } 
-  
+  navigateToOrdersView() {
+    this.router.navigate(['/orders']);
+  }
 }

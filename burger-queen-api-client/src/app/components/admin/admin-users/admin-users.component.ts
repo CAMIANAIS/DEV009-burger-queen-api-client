@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { UserEditModalComponent } from './user-edit-modal/user-edit-modal.component';
 import { MatDialog } from '@angular/material/dialog'; // Agrega la importación de MatDialog
 import { UserCreateModalComponent } from './user-create-modal/user-create-modal.component'; // Importa el componente necesario para crear usuarios
-
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
@@ -66,6 +66,17 @@ export class AdminUsersComponent implements OnInit {
           // Realiza acciones adicionales si es necesario
           console.log('Usuario agregado con éxito');
         });
+      }
+    });
+  }
+  openDeleteConfirmationDialog(order: userData) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: order,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.deleteUser(order);
       }
     });
   }

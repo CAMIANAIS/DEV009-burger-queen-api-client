@@ -1,5 +1,8 @@
 <main>
     <app-header></app-header>
+    <button mat-raised-button (click)="navigateToOrdersView()" class="order-button mat-primary">
+      <span>Return to Orders</span>
+    </button>
     <div class="table-container"> 
       <table mat-table [dataSource]="dataSource" matSort class="tabla">
 
