@@ -15,8 +15,7 @@
 }
 
 .exit{
-align-self: flex-end;
-font-size: 30px;
+font-size: 35px;
 }
 
 .logo{
@@ -25,4 +24,6 @@ font-size: 30px;
 .container-icons{
   display:flex;
   justify-content: space-between;
+  align-items: center;
+  margin-right: 2%;
 }

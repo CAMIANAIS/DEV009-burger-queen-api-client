@@ -1,6 +1,7 @@
-<button mat-icon-button (click)="openAddProductModal()">
+<button mat-icon-button (click)="openAddProductModal()" class="custom-button">
     <mat-icon color="warn">add</mat-icon> <!-- El icono "add" representa la acción de agregar -->
   </button>
+<div class="table-container">
   <!-- products.component.html -->
 <mat-table [dataSource]="dataSource">
     <!-- Columna ID -->
@@ -39,7 +40,7 @@
         <button mat-icon-button (click)="openModaltoEditProduct(producto)">
             <mat-icon color="primary">edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteProduct(producto)">
+        <button mat-icon-button (click)="openDeleteConfirmationDialog(producto)">
             <mat-icon color="warn">delete</mat-icon>
         </button>
         </mat-cell>
@@ -51,3 +52,4 @@
     <mat-row *matRowDef="let row; columns: columnas"></mat-row>
   </mat-table>
   
+</div>

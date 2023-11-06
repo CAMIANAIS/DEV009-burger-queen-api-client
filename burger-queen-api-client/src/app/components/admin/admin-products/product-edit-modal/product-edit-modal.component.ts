@@ -27,4 +27,5 @@ export class ProductEditModalComponent {
   closeModal() {
     this.dialogRef.close();
   }
+
 }

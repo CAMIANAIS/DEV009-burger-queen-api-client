@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductEditModalComponent } from './product-edit-modal/product-edit-modal.component';
 import { ProductCreateModalComponent } from './product-create-modal/product-create-modal.component';
-
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
@@ -67,6 +67,17 @@ export class AdminProductsComponent {
           // Realiza acciones adicionales si es necesario
           console.log('Producto agregado con éxito');
         });
+      }
+    });
+  }
+  openDeleteConfirmationDialog(order: productData) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: order,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.deleteProduct(order);
       }
     });
   }

@@ -1,5 +1,8 @@
 <div class="main-background"></div>
-<div class="container-icons">
+<div class="container-icons"  >
     <img src="../../../assets/logo-color.png" alt="logo" class="logo"/>
-    <mat-icon class="exit" (click)="logout()" color="warn" >exit_to_app</mat-icon>
+    <button mat-raised-button (click)="logout()" class="logout-button">
+        <mat-icon class="exit-icon" color="warn">exit_to_app</mat-icon>
+        <span>Log Out</span>
+    </button>    
 </div>

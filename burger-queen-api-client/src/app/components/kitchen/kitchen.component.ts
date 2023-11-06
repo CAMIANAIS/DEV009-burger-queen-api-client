@@ -26,6 +26,8 @@ export class KitchenComponent implements OnInit {
     this.orderService.getOrders().subscribe((data) => {
       this.dataSource.data = data; // Establece los datos en la fuente de datos de la tabla
       this.dataSource.sort = this.sort; // Configura la clasificación
+      this.dataSource.sort.direction = 'desc';
+      this.dataSource.sort.active = 'id';
     });
   }
 

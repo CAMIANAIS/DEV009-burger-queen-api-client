@@ -1,9 +1,11 @@
 <main>
   <app-header></app-header>
-  <div class="buttons">
+  <div class="button-container">
     <button mat-button (click)="usersTable()" mat-raised-button [color]="manageUsersActive ? 'warn' : ''">Manage Users</button>
+    <div class="button-gap"></div>
     <button mat-button (click)="productsTable()" mat-raised-button [color]="manageProductsActive ? 'warn' : ''">Manage Products</button>
   </div>
   <app-admin-users *ngIf="manageUsersActive"></app-admin-users>
   <app-admin-products *ngIf="manageProductsActive"></app-admin-products>
 </main>
+

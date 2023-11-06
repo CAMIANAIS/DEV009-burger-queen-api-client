@@ -1,9 +1,6 @@
 /* Estilos para centrar horizontal y verticalmente la tabla */
 .table-container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
+    display: flex; 
     padding: 5%;
   }
   

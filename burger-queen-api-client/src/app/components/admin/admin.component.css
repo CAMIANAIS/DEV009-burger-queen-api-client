@@ -1,0 +1,10 @@
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;    /* Centra los elementos verticalmente */
+  }
+  
+  .button-gap {
+    width: 20px; /* Ajusta el espacio según tus necesidades */
+  }
+  

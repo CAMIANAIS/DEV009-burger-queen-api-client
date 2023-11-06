@@ -38,12 +38,12 @@
 .order-details{
   color: #FFFFFF;
   font-weight: bold;
-  background-color: #f4efef44;
+  background-color: #666161;
   padding:2%;
 }
 
 ul {
-  list-style-type: none; /* Elimina los puntos de las listas no ordenadas */
+  list-style-type: none; 
 }
 
 mat-form-field{
@@ -65,13 +65,17 @@ mat-form-field{
   display: flex;
   flex-direction: column;
   padding: 10px; 
-
+  margin-top: 5%;
 }
 
 .formOrder {
   margin-bottom: 20px; 
 
 }
-.white-icon svg {
-  fill: white;
+
+.order-ready-button-container {
+  text-align: left;
+}
+.order-ready-button {
+  max-width: 200px; 
 }
