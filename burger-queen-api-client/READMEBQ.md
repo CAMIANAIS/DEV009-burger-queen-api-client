@@ -14,7 +14,7 @@
 ## 1. Preámbulo
 
 El objetivo del proyecto fue crear una  página web destinada a un restaurante, una SPA, que tendrá accessos de administrador, mesero y cocinero, las funcionalidades varian desde la creación de ordenes, visualización de ordenes listas para ser entregadas, hasta la vista del cocinero que puede marcar cuando una orden esta lista y ver el tiempo que le demoró, para el amdinistrador se desarrolló funcionalidades para que pueda crear, editar y eliminar productos y usuarios, solo adentrate en esta aplicación desarrollada desde Burguer 1997.
-
+![logo](src/assets/logo-color.png)
 ## 2. Resumen del proyecto
 
 La tematica elegida fue pensada para resolver los constantes retos de acceso de información instantanea que existen en un restaurante.
@@ -180,7 +180,7 @@ Se trabajo en la elaboración de un prototipo de alta fidelidad el cual fue eval
 
 
 #### Prototipos de alta fidelidad
-![prototipo alta 1](/src/assets/prototipo.png)
+![prototipo alta 1](src/assets/prototipo.png)
 
  Prototipo dinámico: [prototipo dinamico](https://www.figma.com/proto/sKL7mQx1XwclUYnEBqdQIA/burguer-1997?node-id=1-2&starting-point-node-id=1%3A2&mode=design&t=10Pz76zp8YFJmXgj-1)
 
@@ -192,7 +192,7 @@ El proyecto cuenta con test para los componentes que incluyen login, orders,kitc
 ## 6. Planificación del proyecto
 
 Me planifiqué en Git Hub projects, este me ayudo a optimizar mi proceso y hacerle seguimiento a mi avance diario.
-![plicificacion 1](/src/assets/plan1.png)
+![planificacion 1](src/assets/plan1.png)
 
 ## 7. Resultado
 ![result 1](src/assets/result1.png)
