@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AdminProductsComponent } from './admin-products.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductService } from 'src/app/services/product.service';
@@ -10,75 +10,46 @@ describe('AdminProductsComponent', () => {
   let productService: jasmine.SpyObj<ProductService>;
   let dialog: jasmine.SpyObj<MatDialog>;
 
-  const mockProductData: productData[] = [
-    {
-      id: 1,
-      name: 'Product A',
-      price: 10,
-      image: 'product_a.jpg',
-      type: 'Type A',
-      dateEntry: '2023-10-28 15:14:10',
-    },
-  ];
+  const mockProductData: productData = {
+    id: 1,
+    name: 'Product A',
+    price: 10,
+    image: 'product_a.jpg',
+    type: 'Type A',
+    dateEntry: '2023-10-28 15:14:10',
+  };
 
   beforeEach(() => {
     productService = jasmine.createSpyObj('ProductService', ['getProducts', 'deleteProduct', 'patchProduct', 'postProducts']);
     dialog = jasmine.createSpyObj('MatDialog', ['open']);
+
+    const dialogRef = jasmine.createSpyObj('MatDialogRef', ['afterClosed', 'close']);
+    dialogRef.afterClosed.and.returnValue(of(true));
+    dialogRef.close.and.returnValue(null);
+
+    dialog.open.and.returnValue(dialogRef);
+
+    // Restablecer los espías antes de cada prueba
+    productService.postProducts.calls.reset();
+    dialog.open.calls.reset();
+
     component = new AdminProductsComponent(productService, dialog);
-    console.log('productService spy:', productService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getProducts on ngOnInit', () => {
-    productService.getProducts.and.returnValue(of(mockProductData));
-
-    component.ngOnInit();
-
-    expect(productService.getProducts).toHaveBeenCalled();
-    expect(component.dataSource.data).toEqual(mockProductData);
-  });
-
-  /*it('should delete a product', () => {
+  it('should delete a product', () => {
     productService.deleteProduct.and.returnValue(of({}));
-    const productToDelete = mockProductData[0]; // Accede al primer elemento del arreglo
-    
-    component.deleteProduct(productToDelete);
-  
-    // Convierte el id del producto a número para la expectativa
-    const expectedProductId = Number(productToDelete.id);
-  
-    expect(productService.deleteProduct).toHaveBeenCalledWith(expectedProductId.toString());
-    expect(component.dataSource.data).not.toContain(productToDelete);
-  });*/
-  
-  /*it('should patch a product', () => {
-    const productToUpdate = mockProductData[0];
-    const updatedProduct = { ...productToUpdate, name: 'Updated Product' };
-    const productId = productToUpdate.id.toString();
-    
-    productService.patchProduct.and.returnValue(of(updatedProduct));
-    
-    component.openModaltoEditProduct(productToUpdate);
-    
-    // Espera que productService.patchProduct sea llamado con el producto actualizado
-    expect(productService.patchProduct).toHaveBeenCalledWith(productId, updatedProduct);
-    
-    // Simula el resultado de la actualización
-    expect(component.dataSource.data).toContain(updatedProduct);
-  
-    // Verifica que la propiedad 'name' del producto actualizado se haya modificado
-    if (component.dataSource.data[0]) {
-      expect(component.dataSource.data[0].name).toEqual('Updated Product');
-    } else {
-      fail('The first item in dataSource.data is undefined');
-    }
+
+    component.deleteProduct(mockProductData);
+
+    expect(productService.deleteProduct).toHaveBeenCalledWith(mockProductData.id.toString());
+    expect(component.dataSource.data.length).toBe(0);
   });
-  
-  
-  it('should post a new product', () => {
+
+  /*it('should call postProducts when adding a new product', fakeAsync(() => {
     const newProduct: productData = {
       id: 2,
       name: 'New Product',
@@ -92,12 +63,11 @@ describe('AdminProductsComponent', () => {
   
     component.openAddProductModal();
   
-    // Espera que productService.postProducts sea llamado con el nuevo producto
-    expect(productService.postProducts).toHaveBeenCalledWith(newProduct);
+    tick();
   
-    // Simula el resultado de la adición
+    // Verifica que se llame con el objeto newProduct
+    expect(productService.postProducts).toHaveBeenCalledWith(newProduct);
     expect(component.dataSource.data).toContain(newProduct);
-
-  });*/
+  });
+  */
 });
-

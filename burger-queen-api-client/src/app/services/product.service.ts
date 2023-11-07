@@ -16,7 +16,7 @@ export class ProductService {
       console.log('AccessToken:', this.accessToken);
     }
   
-    private urlApi:string = 'http://localhost:8080/products';
+    private urlApi:string = 'https://burger-queen-api-mock-r1iq.onrender.com/products';
     
     httpOptions = {
       headers: new HttpHeaders({

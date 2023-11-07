@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterModule } from '@angular/router';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -40,6 +41,9 @@ import { ProductEditModalComponent } from './components/admin/admin-products/pro
 import { ProductCreateModalComponent } from './components/admin/admin-products/product-create-modal/product-create-modal.component';
 import { UserCreateModalComponent } from './components/admin/admin-users/user-create-modal/user-create-modal.component';
 import { UserEditModalComponent } from './components/admin/admin-users/user-edit-modal/user-edit-modal.component';
+import { ProductService } from './services/product.service';
+import { UsersService } from './services/user.service';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
@@ -82,11 +86,15 @@ import { UserEditModalComponent } from './components/admin/admin-users/user-edit
     MatDialogModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule
   ],
   providers: [
     LoginService,
     OrderService,
+    ProductService,
+    UsersService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

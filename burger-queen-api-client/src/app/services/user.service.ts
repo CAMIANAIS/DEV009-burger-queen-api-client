@@ -10,7 +10,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  private urlApi = 'http://localhost:8080/users';
+  private urlApi = 'https://burger-queen-api-mock-r1iq.onrender.com/users';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -27,13 +27,12 @@ export class UsersService {
     return this.http.post<userData>(this.urlApi, user, this.httpOptions);
   }
 
-  updateUser(userId: string, user: userData): Observable<userData> {
-    return this.http.put<userData>(`${this.urlApi}/${userId}`, user, this.httpOptions);
-  }
-
   deleteUser(userId: string): Observable<userData> {
     console.log('userId received', userId);
     return this.http.delete<userData>(`${this.urlApi}/${userId}`, this.httpOptions);
+  }
+  updateUser(userId: string, user: userData): Observable<userData> {
+    return this.http.put<userData>(`${this.urlApi}/${userId}`, user, this.httpOptions);
   }
   patchUser(userId: string, updatedUser: any): Observable<any> {
     const patchUrl = `${this.urlApi}/${userId}`;

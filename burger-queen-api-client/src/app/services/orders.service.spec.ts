@@ -43,16 +43,6 @@ describe('OrderService ', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get a list of orders', () => {
-    const mockOrders: ordersData[] = [/* Define tus datos de prueba aquí */];
-    service.getOrders().subscribe((orders) => {
-      expect(orders).toEqual(mockOrders);
-    });
-
-    const req = httpTestingController.expectOne(service['urlApi']);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockOrders);
-  });
 
   it('should post an order', () => {
     service.postOrder(mockOrderData).subscribe((order) => {

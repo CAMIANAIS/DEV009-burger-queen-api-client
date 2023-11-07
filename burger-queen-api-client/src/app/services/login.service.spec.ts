@@ -44,7 +44,7 @@ describe('LoginService', () => {
       expect(response).toEqual(mockResponse);
     });
 
-    const req = httpTestingController.expectOne('http://localhost:8080/login');
+    const req = httpTestingController.expectOne('https://burger-queen-api-mock-r1iq.onrender.com/login');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ email, password });
 

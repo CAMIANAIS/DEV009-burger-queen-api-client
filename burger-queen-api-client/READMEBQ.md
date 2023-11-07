@@ -195,6 +195,6 @@ Me planifiqué en Git Hub projects, este me ayudo a optimizar mi proceso y hacer
 ![plicificacion 1](/src/assets/plan1.png)
 
 ## 7. Resultado
-![result 1](/src/assets/result1.png)
-![result 2](/src/assets/result2.png)
-![result 3](/src/assets/result3.png)
+![result 1](src/assets/result1.png)
+![result 2](src/assets/result2.png)
+![result 3](src/assets/result3.png)

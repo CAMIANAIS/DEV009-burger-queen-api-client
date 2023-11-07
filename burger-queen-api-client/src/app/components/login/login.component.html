@@ -8,11 +8,7 @@
                     <input matInput id="emailData" placeholder="email"           formControlName="email"
                     [class.is-invalid]="isFieldInvalid('email')"
                   />
-                  <i
-                    class="fas fa-user"
-                    id="icono-user"
-                    [class.is-invalid]="isFieldInvalid('email')"
-                  ></i>                   
+            
                   <mat-error>{{ errorMessage }}</mat-error>
                 </mat-form-field>
                 <div class="container-error">

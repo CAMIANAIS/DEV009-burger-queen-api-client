@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginService {
-  private urlApi = 'http://localhost:8080/login';
+  private urlApi = 'https://burger-queen-api-mock-r1iq.onrender.com/login';
 
   constructor(private http: HttpClient,private router: Router) { }
 

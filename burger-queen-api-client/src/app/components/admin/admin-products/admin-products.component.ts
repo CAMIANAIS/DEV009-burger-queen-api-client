@@ -26,17 +26,18 @@ export class AdminProductsComponent {
       this.dataSource.sort = this.sort;
     });
   }
-  deleteProduct(producto: any) {
-    this.productService.deleteProduct(producto.id).subscribe(() => {
+  deleteProduct(producto: productData) {
+    this.productService.deleteProduct(producto.id.toString()).subscribe(() => {
       // Eliminar el producto de la fuente de datos de la tabla
       const index = this.dataSource.data.indexOf(producto);
       if (index >= 0) {
         this.dataSource.data.splice(index, 1);
-        this.dataSource._updateChangeSubscription();
       }
       console.log('Producto eliminado');
     });
   }
+  
+
   openModaltoEditProduct(producto: productData) {
     const dialogRef = this.dialog.open(ProductEditModalComponent, {
       width: '400px', // Define el ancho del modal
