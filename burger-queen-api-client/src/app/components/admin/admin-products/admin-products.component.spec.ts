@@ -49,7 +49,7 @@ describe('AdminProductsComponent', () => {
     expect(component.dataSource.data.length).toBe(0);
   });
 
-  /*it('should call postProducts when adding a new product', fakeAsync(() => {
+  it('should call postProducts when adding a new product', fakeAsync(() => {
     const newProduct: productData = {
       id: 2,
       name: 'New Product',
@@ -68,6 +68,6 @@ describe('AdminProductsComponent', () => {
     // Verifica que se llame con el objeto newProduct
     expect(productService.postProducts).toHaveBeenCalledWith(newProduct);
     expect(component.dataSource.data).toContain(newProduct);
-  });
-  */
+  }));
+  
 });

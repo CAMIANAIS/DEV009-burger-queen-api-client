@@ -51,7 +51,7 @@ describe('ProductCreateModalComponent', () => {
     expect(dialogRef.close).toHaveBeenCalled();
   });
 
-  /*it('should add a product', () => {
+  it('should add a product', () => {
     const newProduct: productData = {
       id: 2,
       name: 'New Product',
@@ -69,7 +69,7 @@ describe('ProductCreateModalComponent', () => {
   
     // Debería haberse llamado a close del MatDialogRef con el nuevo producto
     expect(dialogRef.close).toHaveBeenCalledWith(newProduct);
-  });*/
+  });
   
   it('should close the modal without adding a product if the form is invalid', () => {
     // Configura el formulario como inválido
