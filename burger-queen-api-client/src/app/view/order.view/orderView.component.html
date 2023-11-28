@@ -1,5 +1,7 @@
 <main>
         <app-header></app-header>
-        <app-menu (productAdded)="onProductAdded($event)"></app-menu>
-        <app-orders [orderedProducts]="orderedProducts"></app-orders>
-      </main>
+        <div class="container">
+                <app-orders [orderedProducts]="orderedProducts"></app-orders>
+                <app-menu (productAdded)="onProductAdded($event)"></app-menu>
+        </div>
+    </main>

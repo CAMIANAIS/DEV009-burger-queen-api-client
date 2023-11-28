@@ -20,11 +20,12 @@ font-size: 35px;
 }
 
 .logo{
-  width: 10%;
+  width: 8%;
 }
 .container-icons{
   display:flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 2%;
+  height: 50px; 
 }
