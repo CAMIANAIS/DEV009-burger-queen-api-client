@@ -8,6 +8,7 @@ mat-card{
 }
 mat-form-field{
     display: block;
+    padding:4%;
 }
 mat-card .login-button {
     color: var(--md-sys-color-primary-ligth);
@@ -31,4 +32,18 @@ width: 80%;
     right: 0;
     bottom: 0;
     z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
+    filter: contrast(0.7);
   }
+  .container-error,
+  .container-error-password,
+  .error-message {
+    height: 20px; /* Establece la altura que deseas para que el espacio esté presente */
+    overflow: hidden;
+  }
+  
+  .container-error.show,
+  .container-error-password.show,
+  .error-message.show {
+    height: auto; /* Permite que la altura sea automática cuando hay un mensaje de error */
+  }
+  

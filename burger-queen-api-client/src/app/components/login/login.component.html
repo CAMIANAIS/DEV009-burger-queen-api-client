@@ -10,6 +10,7 @@
                   />
             
                   <mat-error>{{ errorMessage }}</mat-error>
+                  
                 </mat-form-field>
                 <div class="container-error">
                   <span *ngIf="isFieldInvalid('email')" class="error-text"
@@ -31,7 +32,7 @@
                 </div>
                   
                   <!-- Muestra errores en la pantalla -->
-                  <div *ngIf="errorMessage" class="error-message">
+                  <div class="error-message" [class.show]="errorMessage">
                     {{ errorMessage }}
                   </div>
                   

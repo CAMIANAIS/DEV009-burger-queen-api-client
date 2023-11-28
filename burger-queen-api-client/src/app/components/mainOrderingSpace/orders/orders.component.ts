@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { OrderService } from 'src/app/services/orders.service';
 import { DataService, formatCurrentDateTime } from 'src/app/services/data.service';
 import { productData } from 'src/app/shared/interfaces/productData.interface';
 import { ordersData } from 'src/app/shared/interfaces/orderData.interface';
+import { ProductAdded } from 'src/app/shared/interfaces/productadded.interface';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+  @Input() orderedProducts: { product: productData, quantity: number, price: number }[] = [];
   orderForm: FormGroup;
   products: productData[] = [];
   productsToShow: productData[] = [];
-  orderedProducts: { product: productData, quantity: number, price: number }[] = [];
-  
+  orderSuccess: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -28,52 +31,27 @@ export class OrdersComponent implements OnInit {
       clientName: ['', Validators.required],
     });
   }
+
   ngOnInit() {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-        this.productsToShow = data;
-      },
-      error: (error) => {
-        console.error('Error to get products', error);
-      },
-    });
-
-  }
-  filterProducts(type: string) {
-    this.productsToShow = this.products.filter(product => product.type === type);
+    // Puedes realizar tareas de inicialización aquí si es necesario
   }
 
-  showAllProducts() {
-    this.productsToShow = this.products;
-  }
-
-  addProductToOrder(product: productData) {
-    if (this.productsToShow.some(p => p.id === product.id)) {
-      const orderedProduct = this.orderedProducts.find(item => item.product.id === product.id);
-  
-      if (orderedProduct) {
-        orderedProduct.quantity++;
-        orderedProduct.price += product.price;
-      } else {
-        this.orderedProducts.push({ product, quantity: 1, price: product.price }); 
-      }
-    }
+  onProductAdded(productAdded: ProductAdded) {
+    console.log('Product added in main component:', productAdded);
+    this.orderedProducts.push(productAdded);
   }
 
   incrementQuantity(item: { product: productData, quantity: number, price: number }) {
-    item.quantity++; 
+    item.quantity++;
   }
 
   deleteProduct(index: number) {
     if (index >= 0 && index < this.orderedProducts.length) {
       this.orderedProducts.splice(index, 1);
-    console.log('Producto eliminado');
+      console.log('Producto eliminado');
     }
   }
 
-  orderSuccess: boolean = false;
-  
   createOrder() {
     if (this.orderForm.valid && this.orderedProducts.length > 0) {
       const clientName = this.orderForm.get('clientName')?.value || '';
@@ -111,8 +89,8 @@ export class OrdersComponent implements OnInit {
   resetOrder() {
     this.orderedProducts = [];
     this.orderForm.reset();
-    
   }
+
   getTotal() {
     let totalToPay = 0;
     for (const product of this.orderedProducts) {
@@ -120,12 +98,12 @@ export class OrdersComponent implements OnInit {
     }
     return totalToPay;
   }
+
   navigateToReadyOrdersView() {
     this.router.navigate(['/readyOrders']);
   }
+
   get clientName() {
     return this.orderForm.get('clientName');
   }
-
-
 }
