@@ -6,3 +6,5 @@ export interface productData {
     type: string;
     dateEntry: string;
   }
+
+  

@@ -1,0 +1,37 @@
+
+  <div class="container">
+    <div class="order-section">
+      <form [formGroup]="orderForm">
+        <div class="formOrder">
+          <mat-form-field>
+            <input matInput formControlName="clientName" placeholder="Client Name">
+          </mat-form-field>
+          <button type="submit" (click)="createOrder()" class="login-button mat-primary" mat-raised-button>Send to Kitchen</button>
+        </div>
+      </form>
+      <div class="order-details">
+        <div>
+          <h2>Products in the order:</h2>
+          <ul>
+            <li *ngFor="let item of orderedProducts; let i = index">
+              <div class="ordered-details">
+                <mat-icon class="add" (click)="incrementQuantity(item)">add</mat-icon>
+                <span>{{ item.quantity }}</span>
+                <span>{{ item.product.name }}</span>
+                <span>{{ item.price }}</span>
+                <mat-icon (click)="deleteProduct(i)">delete</mat-icon>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="total">
+          <span>Bill Payment:</span>
+          <span>{{ getTotal() }}</span>
+        </div>
+        <div class="order-success-message" *ngIf="orderSuccess">
+          Order succesfully sent to kitchen
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -34,7 +34,7 @@ describe('ReadyOrdersComponent', () => {
 
     component.ngOnInit();
 
-    const req = httpTestingController.expectOne('http://localhost:8080/orders'); // Debes ajustar la URL a tu API
+    const req = httpTestingController.expectOne('https://burger-queen-api-mock-r1iq.onrender.com/orders'); // Debes ajustar la URL a tu API
     expect(req.request.method).toBe('GET');
     req.flush(mockOrders);
 

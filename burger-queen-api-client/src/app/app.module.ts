@@ -17,18 +17,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterModule } from '@angular/router';
 
 
 import { LoginComponent } from './components/login/login.component';
 import { LoginViewComponent } from './view/login.view/loginView';
 import { LoginService } from './services/login.service';
-import { OrdersComponent } from './components/orders/orders.component';
+import { OrdersComponent } from './components/mainOrderingSpace/orders/orders.component';
 import { OrderViewComponent } from './view/order.view/orderView';
 import { HeaderComponent } from './shared/components/header.component/header.component';
 import { KitchenViewComponent } from './view/kitchen.view/kitchen.view.component';
 import { KitchenComponent } from './components/kitchen/kitchen.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminViewComponent } from './view/admin.view/admin.view.component';
+
 
 import { OrderService } from './services/orders.service';
 import { ReadyOrdersViewComponent } from './view/ready-orders.view/ready-orders.view.component';
@@ -40,6 +42,11 @@ import { ProductEditModalComponent } from './components/admin/admin-products/pro
 import { ProductCreateModalComponent } from './components/admin/admin-products/product-create-modal/product-create-modal.component';
 import { UserCreateModalComponent } from './components/admin/admin-users/user-create-modal/user-create-modal.component';
 import { UserEditModalComponent } from './components/admin/admin-users/user-edit-modal/user-edit-modal.component';
+import { ProductService } from './services/product.service';
+import { UsersService } from './services/user.service';
+import { DataService } from './services/data.service';
+import { MenuComponent } from './components/mainOrderingSpace/menu/menu.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -63,6 +70,7 @@ import { UserEditModalComponent } from './components/admin/admin-users/user-edit
     ProductCreateModalComponent,
     UserCreateModalComponent,
     UserEditModalComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,11 +90,16 @@ import { UserEditModalComponent } from './components/admin/admin-users/user-edit
     MatDialogModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule,
+    CommonModule
   ],
   providers: [
     LoginService,
     OrderService,
+    ProductService,
+    UsersService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

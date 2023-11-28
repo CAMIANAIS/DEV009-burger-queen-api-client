@@ -26,23 +26,24 @@ export class AdminProductsComponent {
       this.dataSource.sort = this.sort;
     });
   }
-  deleteProduct(producto: any) {
-    this.productService.deleteProduct(producto.id).subscribe(() => {
+  deleteProduct(producto: productData) {
+    this.productService.deleteProduct(producto.id.toString()).subscribe(() => {
       // Eliminar el producto de la fuente de datos de la tabla
       const index = this.dataSource.data.indexOf(producto);
       if (index >= 0) {
         this.dataSource.data.splice(index, 1);
-        this.dataSource._updateChangeSubscription();
       }
       console.log('Producto eliminado');
     });
   }
+  
+
   openModaltoEditProduct(producto: productData) {
     const dialogRef = this.dialog.open(ProductEditModalComponent, {
       width: '400px', // Define el ancho del modal
       data: { updatedProduct: { ...producto } }, // Pasa los datos actualizados al modal
     });
-  
+    if (dialogRef) {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Los cambios se guardan en result, puedes llamar a patchProduct aquí
@@ -53,13 +54,14 @@ export class AdminProductsComponent {
         });
       }
     });
+    }
   }
 
   openAddProductModal(): void {
     const dialogRef = this.dialog.open(ProductCreateModalComponent, {
       width: '400px',
     });
-
+    if (dialogRef) {
     dialogRef.afterClosed().subscribe((newProduct: productData) => {
       if (newProduct) {
         // Llama a la función postProduct del servicio para agregar el nuevo producto
@@ -69,16 +71,18 @@ export class AdminProductsComponent {
         });
       }
     });
+    }
   }
   openDeleteConfirmationDialog(order: productData) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       data: order,
     });
-  
+    if (dialogRef) {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.deleteProduct(order);
       }
     });
+  }
   }
 }

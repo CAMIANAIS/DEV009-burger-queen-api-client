@@ -40,6 +40,7 @@ export class ProductCreateModalComponent {
     if (this.productForm.valid) {
       const newProductData: productData = this.productForm.value;
       this.dialogRef.close(newProductData); // Cierra el modal y pasa los datos del nuevo producto
+      console.log(newProductData)
     }
   }
 }

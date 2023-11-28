@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdminComponent } from './admin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from 'src/app/shared/components/header.component/header.component';
-import { of } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+
 describe('AdminComponent', () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
@@ -11,7 +13,9 @@ describe('AdminComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AdminComponent,HeaderComponent],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        MatIconModule,
+        MatButtonModule
       ]
     });
     fixture = TestBed.createComponent(AdminComponent);

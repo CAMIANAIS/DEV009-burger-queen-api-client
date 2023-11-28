@@ -12,6 +12,7 @@
   right: 0;
   bottom: 0;
   z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
+  filter: contrast(0.7);
 }
 
 .exit{
