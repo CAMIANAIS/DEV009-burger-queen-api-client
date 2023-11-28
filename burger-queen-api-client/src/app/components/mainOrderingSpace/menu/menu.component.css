@@ -20,3 +20,21 @@
   color: #FFFFFF; 
   border-radius: 5%;
 }
+.filters button {
+  margin: 10px; 
+  align-items: center;
+}
+
+.menu {
+  flex: 1; 
+  padding: 10px; 
+
+}
+
+
+.order-ready-button-container {
+  text-align: right;
+}
+.order-ready-button {
+  max-width: 200px; 
+}
